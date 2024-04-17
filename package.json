@@ -17,6 +17,7 @@
     "react-router-dom": "^6.22.3",
     "react-toastify": "^10.0.5"
   },
+
   "devDependencies": {
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
@@ -27,4 +28,5 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "vite": "^5.0.8"
   }
+
 }
