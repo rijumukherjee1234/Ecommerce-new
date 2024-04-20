@@ -10,21 +10,32 @@ const useGetRequest = (url) =>{
     useEffect(()=>{
         const fetchData = async () =>{
             try{
-                const response = await axios.get(url);
+                const response = await axios.get(url, { params: payload });
                 setData(response.data);
                 setStatus(response.status);
+                setIsLoading(false);
             } catch (error) {
                 setError(error.message);
                 setStatus(response.status);
-            } finally {
                 setIsLoading(false);
-            }
+            } 
         }
 
         fetchData(); 
-        },[url]);
+        },[url, payload]);
 
-        return { data, isLoading, error ,status };
+        // Return a promise that resolves with data or rejects with error
+        const getRequestPromise = () => {
+            return new Promise((resolve, reject) => {
+                if (data) {
+                    resolve(data);
+                } else if (error) {
+                    reject(error);
+                }
+            });
+        };
+
+        return { data, isLoading, error ,status ,getRequestPromise };
 }
 
 export default useGetRequest;

@@ -5,9 +5,17 @@ import './index.css'
 import {BrowserRouter} from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { store } from './redux/store.js'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor } from './redux/store.js'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <PersistGate loadaing={null} persistor={persistor}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>,
 )

@@ -11,9 +11,6 @@ import { Settings } from './components/admin/Settings';
 import { ToastContainer } from 'react-toastify';
 
 function App() {
-  const [data, setData] = React.useState(null);
-
-
  
   return (
     <>

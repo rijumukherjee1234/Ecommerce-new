@@ -1,31 +1,43 @@
 import { useState } from "react";
 import { Button, TextField, Grid, Paper, AppBar, Typography, Toolbar } from '@mui/material';
-import usePostRequest from "../common/customePostApiCall";
-import { API_URL,apiBus } from "../common/endpoints";
 import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from "../../redux/Slices/authSlice";
+import usePostRequest from "../common/customePostApiCall";
 
 export default function Login() {
+const dispatch = useDispatch();
+const state = useSelector(state => state)
 
-const {postData } = usePostRequest(API_URL+apiBus.login_api);
 
 const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 
-const handleLogin = async () => {      
+const handleLogin = (e) => {   
+    e.preventDefault();   
            
-        postData({ username, password })
-         .then((res) =>{
-            if(res.status == '200'){
-                toast.success("Login Successfull!")
-            }
+        // postData({ username, password })
+        //  .then((res) =>{
+        //     if(res.status == '200'){
+            dispatch(login({ username, password }))
+            .then((res => {
+                if(res.type=='login/fulfilled'){
+                    toast.success("Login Successfull!")
+                }
+                else{
+                    toast.error(res.error.message)
+                }
             
-         }).catch((err) =>{
-            console.log(err)
-            toast.error("Login Failed")
-         })
-      
-        
-        
+            }))
+                // 
+        //     }
+            
+        //  }).catch(() =>{
+
+        //     dispatch(loginFailure(error.message));
+        //     toast.error("Login Failed")
+        //  })
+            
 };
 
 
