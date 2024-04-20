@@ -22,6 +22,7 @@ const handleLogin = (e) => {
             dispatch(login({ username, password }))
             .then((res => {
                 if(res.type=='login/fulfilled'){
+                    console.log("res:",res)
                     toast.success("Login Successfull!")
                 }
                 else{
