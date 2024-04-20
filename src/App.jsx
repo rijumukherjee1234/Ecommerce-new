@@ -17,7 +17,7 @@ function App() {
  
   return (
     <>
-    <Sidebar/>
+    {/* <Sidebar/> */}
     <Routes>
        <Route path="/" element={<Login/>}/>
        <Route path="/dashboard" element={<Dashboard/>}/>
