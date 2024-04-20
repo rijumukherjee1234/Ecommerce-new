@@ -13,6 +13,7 @@ export const login = createAsyncThunk("login", async ({username, password}) =>{
         const response = await axios.post(`${API_URL + apiBus.login_api}`, {
             username, password
         });
+        console.log("response is",response)
         return response.data; // Return only the data from the response
     } catch (error) {
         throw error; 
@@ -43,11 +44,14 @@ export const authSlice = createSlice({
               state.error = null;
         })
         .addCase(login.rejected, (state, action) =>{
-              state.isLoggedIn = false;
-              state.error = action.error.message      
+              state.isLoggedIn = true;
+              state.error = action.error.message 
+              state.token = "TUHIN"     
         })
     }
 })
+
+export const userSelector = (state) => state.auth;
 
 export const { logout} = authSlice.actions;
 

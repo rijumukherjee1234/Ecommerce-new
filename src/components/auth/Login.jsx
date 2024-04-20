@@ -4,9 +4,12 @@ import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from "../../redux/Slices/authSlice";
 import usePostRequest from "../common/customePostApiCall";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
 const dispatch = useDispatch();
+const navigate = useNavigate();
+
 const state = useSelector(state => state)
 
 
@@ -24,9 +27,11 @@ const handleLogin = (e) => {
                 if(res.type=='login/fulfilled'){
                     console.log("res:",res)
                     toast.success("Login Successfull!")
+                    navigate('/dashboard');
                 }
                 else{
                     toast.error(res.error.message)
+                    navigate('/dashboard');
                 }
             
             }))

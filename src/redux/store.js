@@ -16,6 +16,6 @@ export const store = configureStore(
         reducer: persistedReducer,
     }
 )
-export const persistor = persistStore(store)
+export const persistor = persistStore(store);
 
 // export default store
