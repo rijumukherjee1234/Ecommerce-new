@@ -1,6 +1,7 @@
-const API_URL=""
+const API_URL="https://dummyjson.com"
 
 const apiBus = {
+    login_api:"/auth/login"
 
 }
-export default apiBus;
+export  { API_URL, apiBus };
