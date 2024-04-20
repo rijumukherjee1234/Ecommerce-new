@@ -8,7 +8,7 @@ import { Dashboard } from './components/admin/Dashboard';
 import Order from './components/admin/Order';
 import Promotion from './components/admin/Promotion';
 import { Settings } from './components/admin/Settings';
-
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const [data, setData] = React.useState(null);
@@ -27,6 +27,16 @@ function App() {
        {/* <Route path="/settings" element={<Settings/>}/> */}
        
     </Routes>
+
+    <ToastContainer
+        position='top-center'
+        draggable={true}
+        autoClose={1000}
+        hideProgressBar={true}
+        theme='dark'
+      />
+
+
     
 
   {/* React.useEffect(() => {

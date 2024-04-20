@@ -2,23 +2,33 @@ import { useState } from "react";
 import { Button, TextField, Grid, Paper, AppBar, Typography, Toolbar } from '@mui/material';
 import usePostRequest from "../common/customePostApiCall";
 import { API_URL,apiBus } from "../common/endpoints";
+import { toast } from 'react-toastify';
 
 export default function Login() {
-const {isLoading, error , postData ,status,  data} = usePostRequest(API_URL+apiBus.login_api);
+
+const {postData } = usePostRequest(API_URL+apiBus.login_api);
+
 const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
 
-const handleLogin = async () => {
-    try {
-        await postData({ username, password });
+const handleLogin = async () => {      
+           
+        postData({ username, password })
+         .then((res) =>{
+            if(res.status == '200'){
+                toast.success("Login Successfull!")
+            }
+            
+         }).catch((err) =>{
+            console.log(err)
+            toast.error("Login Failed")
+         })
+      
         
-      } catch (error) {
-        console.log("Error login is ",error)
-      }
-
+        
 };
-console.log('isLoading:', isLoading);
-console.log("Data and status",data, "status",status)
+
+
 return(
  <>
 
@@ -38,11 +48,10 @@ return(
      onClick={handleLogin}>
                 Login
     </Button>
-    {error && <Typography variant="body2" color="error">Invalid credentials</Typography>}
+    {/* {error && <Typography variant="body2" color="error">Invalid credentials</Typography>} */}
     </div>
     </Paper>
 </div>
- 
  
  </>
 )

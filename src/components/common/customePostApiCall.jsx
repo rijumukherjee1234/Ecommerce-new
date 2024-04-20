@@ -9,16 +9,22 @@ const usePostRequest = (url) => {
 
   const postData = async (postData) => {
     setIsLoading(true);
-    try {
-      const response = await axios.post(url, postData);
-      setData(response.data);
-      setStatus(response.status);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    return new Promise((resolve, reject) => {
+        axios.post(url, postData)
+          .then((response) => {
+            setData(response.data);
+            setStatus(response.status);
+            resolve(response); 
+          })
+          .catch((error) => {
+            setError(error.message);
+            reject(error); 
+          })
+          .finally(() => {
+            setIsLoading(false);
+          });
+    });
+}
 
   return { data, isLoading, error, status, postData };
 };
