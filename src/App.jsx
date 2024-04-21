@@ -20,7 +20,7 @@ function App() {
     {/* <Sidebar/> */}
     <Routes>
        <Route path="/" element={<Login/>}/>
-       {/* <Route path="/dashboard" element={requireAuth(Dashboard)}/> */}
+       <Route path="/dashboard" element={requireAuth(Dashboard)}/>
        {/* <Route path="/dashboard" element={<Dashboard/>}/> */}
       
        
@@ -34,32 +34,11 @@ function App() {
         theme='dark'
       />
 
-
      {/* <Route path="/orders" element={<Order/>}/> */}
        {/* <Route path="/contact" element={<Contact/>}/> */}
        {/* <Route path="/promotion" element={<Promotion/>}/> */}
        {/* <Route path="/settings" element={<Settings/>}/> */}
 
-  {/* React.useEffect(() => {
-    fetch("http://localhost:3002/api/ISLSHIELD")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []); */}
-
-  
-      {/* <div>
-      <p>{!data ? "Loading..." : data}</p>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-       
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p> */}
     </>
   )
 }

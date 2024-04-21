@@ -1,66 +1,54 @@
-import { useSelector } from "react-redux";
-import { userSelector } from "../../redux/Slices/authSlice";
-import { AppBar, Avatar, Badge, Box, IconButton, Toolbar } from "@mui/material";
+import { useSelector } from 'react-redux';
+import { userSelector } from '../../redux/Slices/authSlice';
+import { AppBar, Avatar, Badge, Box, IconButton, Toolbar, Tooltip } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useState } from 'react';
 
-function Header(){
-    const [anchorEl, setAnchorEl] = useState(null);
-    const { user } = useSelector(userSelector);
+function Header() {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const { user } = useSelector(userSelector);
 
-    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+  const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
-    const handleDrawer = () => {
-        dispatch(setDrawer());
-      };
-      const setMobileDrawer = () =>{
+  const handleDrawer = () => {
+    dispatch(setDrawer());
+  };
+  const setMobileDrawer = () => {};
 
-      }
-
-
-
-return(
+  return (
     <Box>
-        <AppBar position='fixed'>
+      <AppBar position='fixed' style={{display:'flex',flexDirection:"row",zIndex: '-1',paddingLeft: '250px',backgroundColor:"#fff",justifyContent:'space-between'}}>
+      
         <Toolbar>
-        <IconButton
-            size='large'
-            edge='start'
-            color='inherit'
-            aria-label='open drawer'
-            className='gap-[10px] mr-2 hidden md:flex '
-            onClick={handleDrawer}>
-            <MenuIcon />
-          </IconButton>
-
-          <IconButton
-            id='mobile-icon'
-            className='gap-[10px] flex md:hidden mr-2 '
-            color='inherit'
-            aria-label='open drawer'
-            edge='start'>
-            <MenuIcon />
-          </IconButton>
-
-
+          <MenuIcon style={{color:'red'}}/>
         </Toolbar>
+        
+        <div style={{display:'flex',flexDirection:"row"}}>
+        <Toolbar>
+          
         <Box>
-            <IconButton size='large' aria-label='Mode' color='inherit' className='mr-1' onClick={handleMode}>
-             
+          <IconButton size='large' aria-label='Mode' color='inherit' className='mr-1'></IconButton>
+          
+          <Tooltip title='Open settings'>
+            <IconButton className='mr-2' sx={{ p: 0 }}>
+              <Avatar alt='Remy Sharp' />
             </IconButton>
-            <IconButton size='large' aria-label='show 17 new notifications' color='inherit' className='mr-2'>
-              <Badge badgeContent={17} color='error'>
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <Tooltip title='Open settings'>
-              <IconButton className='mr-2' sx={{ p: 0 }}>
-                <Avatar alt='Remy Sharp' />
-              </IconButton>
-            </Tooltip>
-          </Box>
-        </AppBar>
+          </Tooltip>
+        </Box>
+      
+        <Box>
+        <IconButton size='large' aria-label='show 17 new notifications' color='inherit' className='mr-2'>
+            <Badge badgeContent={1} color='error'>
+              <NotificationsIcon style={{color:'#ed5045'}}/>
+            </Badge>
+          </IconButton>
+        </Box>
+        </Toolbar>
+        </div>
+      </AppBar>
     </Box>
-)
+  );
 }
 
 export default Header;

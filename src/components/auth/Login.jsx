@@ -18,13 +18,11 @@ const [password, setPassword] = useState('');
 
 const handleLogin = (e) => {   
     e.preventDefault();   
-           
-        // postData({ username, password })
-        //  .then((res) =>{
-        //     if(res.status == '200'){
+       
             dispatch(login({ username, password }))
             .then((res => {
-                if(res.type=='login/fulfilled'){
+                console.log("res:",res.type)
+                if(res.type=='auth/login/fulfilled'){
                     console.log("res:",res)
                     toast.success("Login Successfull!")
                     navigate('/dashboard');
@@ -35,14 +33,6 @@ const handleLogin = (e) => {
                 }
             
             }))
-                // 
-        //     }
-            
-        //  }).catch(() =>{
-
-        //     dispatch(loginFailure(error.message));
-        //     toast.error("Login Failed")
-        //  })
             
 };
 
